@@ -1,0 +1,265 @@
+/* Плавная прокрутка */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Header */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #000;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    padding: 12px 0;
+}
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    padding: 0;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    color: #ff6b6b;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px 100px;
+    background-color: #f9f9f9;
+    margin-top: 75px;
+}
+
+.hero-content {
+    max-width: 50%;
+}
+
+.hero-content h1,
+.hero-content h2,
+.hero-content p {
+    color: #333;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin: 0;
+    font-style: italic;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.download-resume {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    background: #ff6b6b;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.download-resume:hover {
+    background: #e74c3c;
+}
+
+.hero-image img {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* The Resistance Section */
+.the-resistance {
+    padding: 50px 100px;
+    background-color: #fff;
+}
+
+.the-resistance h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ff6b6b;
+    padding-bottom: 10px;
+}
+
+.the-resistance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.the-resistance-card {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.the-resistance-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.the-resistance-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.the-resistance-card p {
+    font-size: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+    padding: 50px 100px;
+    background-color: #f9f9f9;
+}
+
+.contact-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ff6b6b;
+    padding-bottom: 10px;
+}
+
+.contact-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-section input,
+.contact-section textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+    border: 2px solid #ff6b6b;
+    outline: none;
+}
+
+.contact-section input:invalid,
+.contact-section textarea:invalid {
+    border: 2px solid red;
+}
+
+.contact-section input:valid,
+.contact-section textarea:valid {
+    border: 2px solid green;
+}
+
+.contact-section textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 200px;
+    max-width: 100%;
+}
+
+.contact-section button {
+    padding: 10px;
+    font-size: 1rem;
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-section button:hover {
+    background: #e74c3c;
+}
+
+/* Footer */
+footer {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1080px) {
+    .hero-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-image {
+        width: 200px;
+        height: 200px;
+    }
+
+    .the-resistance-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #header {
+        padding: 10px 0;
+    }
+
+    .nav-links li a {
+        font-size: 1rem;
+    }
+}
