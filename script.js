@@ -1,8 +1,8 @@
 // 1. Галерея с попапом и переключением
 let currentIndex = 0;
 const galleryImages = [
-    "https://i.ytimg.com/vi/SJrpbgY9DRc/maxresdefault.jpg ",
-    "https://fbi.cults3d.com/uploaders/25344900/illustration-file/c6ec9a46-9f7b-48a5-841d-e17e285e819b/0x1900-000000-80-0-0.jpg ",
+    "https://img04.rl0.ru/afisha/e1500x1000i/daily.afisha.ru/uploads/images/6/2f/62f586026ecbfcf600d9918ddefd9e06.jpg",
+    "https://fbi.cults3d.com/uploaders/25344900/illustration-file/c6ec9a46-9f7b-48a5-841d-e17e285e819b/0x1900-000000-80-0-0.jpg",
     "https://images.cults3d.com/2kbzWeV8_RUWBwnJ1Xax1YMayi8=/516x516/filters:no_upscale()/https://fbi.cults3d.com/uploaders/41050705/illustration-file/4d2e4159-224f-4174-a96e-6c3502b7ef20/schimpanzini-bananini.jpg"
 ];
 
