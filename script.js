@@ -37,22 +37,35 @@ function nextImage() {
     }
 }
 
-// 2. Плавное открытие/закрытие формы
+// 2. Форма с закрытием при клике вне ее
 function openFormPopup() {
     const formPopup = document.getElementById("form-popup");
-    if (formPopup) {
-        formPopup.style.visibility = "visible";
-        formPopup.style.opacity = "1";
-    }
+    formPopup.classList.add("show");
+
+    // Добавляем обработчики
+    formPopup.addEventListener("click", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
 }
 
 function closeFormPopup() {
     const formPopup = document.getElementById("form-popup");
-    if (formPopup) {
-        formPopup.style.opacity = "0";
-        formPopup.addEventListener("transitionend", () => {
-            formPopup.style.visibility = "hidden";
-        }, { once: true });
+    formPopup.classList.remove("show");
+
+    // Удаляем обработчики
+    formPopup.removeEventListener("click", closeOnOutsideClick);
+    document.removeEventListener("keydown", closeOnEscape);
+}
+
+function closeOnOutsideClick(e) {
+    const formContent = document.querySelector(".popup-form-content");
+    if (!formContent.contains(e.target)) {
+        closeFormPopup();
+    }
+}
+
+function closeOnEscape(e) {
+    if (e.key === "Escape") {
+        closeFormPopup();
     }
 }
 
@@ -66,9 +79,7 @@ function validateForm(formElement, submitBtnId) {
     const text = formElement[3].value.trim();
 
     const isRussian = /^[\u0400-\u04FF\s]+$/i.test(text);
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     const phoneRegex = /^\d{11}$/;
 
     if (!isRussian) {
@@ -105,26 +116,13 @@ function submitForm(buttonId) {
     }, 1500);
 }
 
-// Привязываем валидацию к обеим формам
-document.addEventListener("DOMContentLoaded", function () {
-    const popupForm = document.getElementById("popup-contact-form");
-    if (popupForm) {
-        popupForm.addEventListener("submit", function (e) {
-            e.preventDefault();
-            validateForm(this, "popup-submit-btn");
-        });
-    }
-});
-
-// 5. Сообщение через 30 секунд
+// 5. Таймер с попапом
 document.addEventListener("DOMContentLoaded", function() {
     const timerPopup = document.getElementById("timer-popup");
 
-    // Проверяем, не закрывал ли пользователь попап ранее
     if (localStorage.getItem("popupClosed") !== "true") {
         setTimeout(function() {
             timerPopup.style.display = "flex";
-            // Небольшая задержка для плавного появления
             setTimeout(function() {
                 timerPopup.classList.add("show");
             }, 10);
@@ -136,15 +134,13 @@ function closeTimerPopup() {
     const timerPopup = document.getElementById("timer-popup");
     timerPopup.classList.remove("show");
 
-    // После завершения анимации скрываем попап полностью
     timerPopup.addEventListener("transitionend", function() {
         timerPopup.style.display = "none";
-        // Запоминаем, что пользователь закрыл попап
         localStorage.setItem("popupClosed", "true");
     }, { once: true });
 }
 
-// 6. Обратный отсчёт до получения диплома МФТИ
+// 6. Обратный отсчёт
 function startCountdown(targetDate) {
     const timerEl = document.getElementById("countdown-timer");
 
@@ -172,7 +168,7 @@ function startCountdown(targetDate) {
 
 startCountdown(new Date("2028-08-31T00:00:00"));
 
-// 7. Фиксация меню со второго экрана
+// 7. Фиксация меню
 window.addEventListener("scroll", () => {
     const header = document.getElementById("header");
     const heroSectionHeight = document.querySelector(".hero-section").offsetHeight;
@@ -184,11 +180,22 @@ window.addEventListener("scroll", () => {
     }
 });
 
-// 8. Анимация SVG при движении мыши
+// 8. Анимация SVG
 document.addEventListener("mousemove", (e) => {
     const svg = document.getElementById("svg-element");
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
 
     svg.style.transform = `translate(${x * 50}px, ${y * 50}px) scale(${1 + x * 0.2})`;
+});
+
+// Инициализация формы
+document.addEventListener("DOMContentLoaded", function () {
+    const popupForm = document.getElementById("popup-contact-form");
+    if (popupForm) {
+        popupForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            validateForm(this, "popup-submit-btn");
+        });
+    }
 });
